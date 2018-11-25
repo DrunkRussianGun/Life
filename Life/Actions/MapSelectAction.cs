@@ -6,6 +6,10 @@ namespace Life.Actions
 {
 	public class MapSelectAction : IUserAction
 	{
+		public string Description => "Select start map";
+		public string Name => "Select map";
+		public string Command => "select map";
+
 		public MapSelectAction(
 			GameSettings gameSettings,
 			MapParser mapParser,
@@ -15,9 +19,6 @@ namespace Life.Actions
 			_mapParser = mapParser ?? throw new ArgumentNullException(nameof(mapParser));
 			_mapSelector = mapSelector ?? throw new ArgumentNullException(nameof(mapSelector));
 		}
-
-		public string Name => "Select map";
-		public string Command => "select map";
 
 		public void Perform(CommandContext context)
 		{

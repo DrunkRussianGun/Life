@@ -6,13 +6,14 @@ namespace Life.Actions
 {
 	public class GameEndAction : IUserAction
 	{
+		public string Description => "End the current game";
+		public string Name => "End game";
+		public string Command => "end";
+
 		public GameEndAction(GameSettings gameSettings)
 		{
 			_gameSettings = gameSettings ?? throw new ArgumentNullException(nameof(gameSettings));
 		}
-
-		public string Name => "End game";
-		public string Command => "end";
 
 		public void Perform(CommandContext context)
 		{

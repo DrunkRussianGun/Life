@@ -58,7 +58,7 @@ namespace Life
 
 		private IUserAction AskActionFromUserOnce()
 		{
-			var command = _userInterface.GetCommand();
+			var command = _userInterface.GetCommand().ToLower();
 			if (!_actions.TryGetValue(command, out var action))
 			{
 				_userInterface.Output.WriteLine("Unknown command");

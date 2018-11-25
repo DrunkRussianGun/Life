@@ -10,6 +10,10 @@ namespace Life.Actions
 {
 	public class GameContinueAction : IUserAction
 	{
+		public string Description => "Continue the current game";
+		public string Name => "Continue";
+		public string Command => "continue";
+
 		public GameContinueAction(
 			AppSettings appSettings,
 			GameSettings gameSettings,
@@ -19,9 +23,6 @@ namespace Life.Actions
 			_gameSettings = gameSettings ?? throw new ArgumentNullException(nameof(gameSettings));
 			_userInterface = userInterface ?? throw new ArgumentNullException(nameof(userInterface));
 		}
-
-		public string Name => "Continue";
-		public string Command => "continue";
 
 		public void Perform(CommandContext context)
 		{

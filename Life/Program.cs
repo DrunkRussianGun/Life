@@ -23,7 +23,7 @@ namespace Life
 			Container.Bind<GameSettings>().ToSelf().InSingletonScope();
 			Container.Bind<GameContext>().ToMethod(
 				context => context.Kernel.Get<GameSettings>().CurrentGame);
-
+			
 			Container.Bind(kernel => kernel
 				.FromThisAssembly()
 				.SelectAllClasses()

@@ -4,6 +4,7 @@ namespace Life.Infrastructure
 {
 	public interface IUserAction
 	{
+		string Description { get; }
 		string Name { get; }
 		string Command { get; }
 

@@ -7,13 +7,14 @@ namespace Life.Actions
 {
 	public class GameStartAction : IUserAction
 	{
+		public string Description => "Start a new game";
+		public string Name => "Start game";
+		public string Command => "start";
+
 		public GameStartAction(GameSettings gameSettings)
 		{
 			_gameSettings = gameSettings ?? throw new ArgumentNullException(nameof(gameSettings));
 		}
-
-		public string Name => "Start game";
-		public string Command => "start";
 
 		public void Perform(CommandContext context)
 		{
