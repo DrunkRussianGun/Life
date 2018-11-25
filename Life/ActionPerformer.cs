@@ -11,11 +11,7 @@ namespace Life
 			if (action == null)
 				throw new ArgumentNullException(nameof(action));
 
-			var context = new CommandContext
-			{
-				Command = action.Name
-			};
-
+			var context = new CommandContext { Command = action.Name };
 			try
 			{
 				action.Perform(context);
@@ -24,7 +20,6 @@ namespace Life
 			{
 				context.AddError(error.ToString());
 			}
-
 			return context;
 		}
 	}

@@ -1,10 +1,10 @@
 ﻿using FluentAssertions;
+using Life.Actions;
 using Life.GameEngine;
-using Life.Infrastructure;
 using NUnit.Framework;
 using System.Drawing;
 
-namespace Life.Tests
+namespace Life.Tests.Actions
 {
 	[TestFixture]
 	public class MapParser_should

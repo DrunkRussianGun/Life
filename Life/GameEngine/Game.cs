@@ -20,7 +20,7 @@ namespace Life.GameEngine
 					.SelectMany(cell => Get3x3Square(cell))
 					.Distinct();
 
-			var newCells = new HashSet<Point>();
+			var newSet = new HashSet<Point>();
 			foreach (var cell in cellsToProcess)
 			{
 				var isAlive = Map.AliveCells.Contains(cell);
@@ -28,10 +28,10 @@ namespace Life.GameEngine
 
 				if (UpdateCell(neighbours.Count(), isAlive) &&
 					  (Map.Bounds?.Contains(cell) ?? true))
-					newCells.Add(cell);
+					newSet.Add(cell);
 			}
 
-			Map = new GameMap(newCells, Map.Bounds);
+			Map = new GameMap(newSet, Map.Bounds);
 		}
 
 		private IEnumerable<Point> GetAliveNeighbours(Point cell)

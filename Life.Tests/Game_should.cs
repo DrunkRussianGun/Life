@@ -1,7 +1,6 @@
 ﻿using FluentAssertions;
-using Life.Infrastructure;
+using Life.GameEngine;
 using NUnit.Framework;
-using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -107,8 +106,8 @@ namespace Life.Tests
 		private static GameMap ParseMap(string[] lines)
 		{
 			var cells = lines.SelectMany((line, y) =>
-					line.Select((ch, x) =>
-						ch == ' ' ? null : new Point?(new Point(x, y))))
+					line.Select((symbol, x) =>
+						symbol == ' ' ? null : (Point?)new Point(x, y)))
 				.Where(point => point != null)
 				.Select(point => point.Value);
 			return new GameMap(cells);

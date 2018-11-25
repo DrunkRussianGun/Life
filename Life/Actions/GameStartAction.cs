@@ -17,6 +17,12 @@ namespace Life.Actions
 
 		public void Perform(CommandContext context)
 		{
+			if (_gameSettings.StartMap == null)
+			{
+				context.AddError("Select map first");
+				return;
+			}
+
 			_gameSettings.CurrentGame = new GameContext
 			{
 				Game = new Game(_gameSettings.StartMap),

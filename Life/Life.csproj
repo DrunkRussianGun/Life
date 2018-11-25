@@ -73,12 +73,11 @@
     <Compile Include="Infrastructure\Default\DefaultFileProvider.cs" />
     <Compile Include="Infrastructure\Common\GameContext.cs" />
     <Compile Include="Infrastructure\Common\GameSettings.cs" />
-    <Compile Include="Infrastructure\IMapParser.cs" />
     <Compile Include="Infrastructure\IFileProvider.cs" />
     <Compile Include="Infrastructure\IUserInterface.cs" />
     <Compile Include="Infrastructure\IUserAction.cs" />
     <Compile Include="GameEngine\GameMap.cs" />
-    <Compile Include="MapParser.cs" />
+    <Compile Include="Actions\MapParser.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

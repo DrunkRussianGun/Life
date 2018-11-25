@@ -7,13 +7,13 @@ namespace Life.Actions
 	public class MapSelectAction : IUserAction
 	{
 		public MapSelectAction(
-			MapSelector fileSelector,
-			IMapParser mapParser,
-			GameSettings gameSettings)
+			GameSettings gameSettings,
+			MapParser mapParser,
+			MapSelector mapSelector)
 		{
-			_mapSelector = fileSelector ?? throw new ArgumentNullException(nameof(fileSelector));
 			_gameSettings = gameSettings ?? throw new ArgumentNullException(nameof(gameSettings));
 			_mapParser = mapParser ?? throw new ArgumentNullException(nameof(mapParser));
+			_mapSelector = mapSelector ?? throw new ArgumentNullException(nameof(mapSelector));
 		}
 
 		public string Name => "Select map";
@@ -25,8 +25,8 @@ namespace Life.Actions
 			_gameSettings.StartMap = _mapParser.Parse(map);
 		}
 
-		private readonly MapSelector _mapSelector;
 		private readonly GameSettings _gameSettings;
-		private readonly IMapParser _mapParser;
+		private readonly MapParser _mapParser;
+		private readonly MapSelector _mapSelector;
 	}
 }

@@ -1,13 +1,12 @@
 ﻿using Life.GameEngine;
-using Life.Infrastructure;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 
-namespace Life
+namespace Life.Actions
 {
-	public class MapParser : IMapParser
+	public class MapParser
 	{
 		public GameMap Parse(string[] lines)
 		{
@@ -24,8 +23,8 @@ namespace Life
 		private IEnumerable<Point> ParseMap(IEnumerable<string> lines)
 		{
 			return lines.SelectMany((line, y) =>
-					line.Select((ch, x) =>
-						ch == ' ' ? null : new Point?(new Point(x, y))))
+					line.Select((symbol, x) =>
+						symbol == ' ' ? null : (Point?)new Point(x, y)))
 				.Where(point => point != null)
 				.Select(point => point.Value);
 		}

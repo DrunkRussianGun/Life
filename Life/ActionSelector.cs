@@ -11,8 +11,8 @@ namespace Life
 	{
 		public ActionSelector(
 			IUserAction[] actions,
-			IUserInterface userInterface,
-			Func<GameContext> gameSettingsProvider)
+			Func<GameContext> gameSettingsProvider,
+			IUserInterface userInterface)
 		{
 			_actions = actions?.ToDictionary(action => action.Command)
 				?? throw new ArgumentNullException(nameof(actions));
@@ -54,7 +54,6 @@ namespace Life
 				_userInterface.Output.WriteLine("Unknown command");
 				return null;
 			}
-
 			return action;
 		}
 

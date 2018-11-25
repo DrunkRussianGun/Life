@@ -23,8 +23,6 @@ namespace Life
 			Container.Bind<GameSettings>().ToSelf().InSingletonScope();
 			Container.Bind<GameContext>().ToMethod(
 				context => context.Kernel.Get<GameSettings>().CurrentGame);
-			Container.Bind<ActionPerformer>().ToSelf().InSingletonScope();
-			Container.Bind<IMapParser>().To<MapParser>().InSingletonScope();
 
 			Container.Bind(kernel => kernel
 				.FromThisAssembly()
@@ -44,11 +42,11 @@ namespace Life
 				var action = actionSelector.GetNextAction();
 				var commandContext = actionPerformer.Perform(action);
 
-				if (commandContext.ExitRequested)
-					return;
 				if (!commandContext.Handled)
 					Console.WriteLine(
 						string.Join("\r\n", commandContext.ErrorMessages));
+				if (commandContext.ExitRequested)
+					return;
 			}
 		}
 	}

@@ -65,11 +65,9 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Actions\GameRunner_should.cs" />
-    <Compile Include="Actions\MapSelector_should.cs" />
     <Compile Include="EnumerableExtensions.cs" />
     <Compile Include="Game_should.cs" />
-    <Compile Include="MapParser_should.cs" />
+    <Compile Include="Actions\MapParser_should.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
