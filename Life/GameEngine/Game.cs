@@ -1,10 +1,9 @@
-﻿using Life.Infrastructure;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 
-namespace Life
+namespace Life.GameEngine
 {
 	public class Game
 	{

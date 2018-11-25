@@ -1,4 +1,5 @@
 ﻿using FluentAssertions;
+using Life.GameEngine;
 using Life.Infrastructure;
 using NUnit.Framework;
 using System.Drawing;

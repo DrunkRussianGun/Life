@@ -1,4 +1,5 @@
 ﻿using Life.Infrastructure;
+using Life.Infrastructure.Common;
 using System;
 
 namespace Life.Actions

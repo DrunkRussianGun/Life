@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Drawing;
 
-namespace Life.Infrastructure
+namespace Life.GameEngine
 {
 	public class GameMap
 	{

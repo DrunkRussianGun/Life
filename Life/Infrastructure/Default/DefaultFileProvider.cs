@@ -1,6 +1,6 @@
 ﻿using System.IO;
 
-namespace Life.Infrastructure
+namespace Life.Infrastructure.Default
 {
 	public class DefaultFileProvider : IFileProvider
 	{

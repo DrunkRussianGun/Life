@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Life.Infrastructure
+namespace Life.Infrastructure.Common
 {
 	public class AppSettings
 	{

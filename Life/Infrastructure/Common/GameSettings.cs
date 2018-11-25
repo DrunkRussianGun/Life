@@ -1,4 +1,6 @@
-﻿namespace Life.Infrastructure
+﻿using Life.GameEngine;
+
+namespace Life.Infrastructure.Common
 {
 	public class GameSettings
 	{

@@ -1,4 +1,6 @@
 ﻿using Life.Infrastructure;
+using Life.Infrastructure.Common;
+using Life.Infrastructure.Default;
 using Ninject;
 using Ninject.Extensions.Conventions;
 using System;

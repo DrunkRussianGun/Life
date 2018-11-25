@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Life.Infrastructure
+namespace Life.Infrastructure.Common
 {
 	public class CommandContext
 	{

@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Life.Infrastructure;
+using Life.Infrastructure.Common;
+using System;
 
-namespace Life.Infrastructure
+namespace Life
 {
 	public class ActionPerformer
 	{

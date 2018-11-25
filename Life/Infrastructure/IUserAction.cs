@@ -1,4 +1,6 @@
-﻿namespace Life.Infrastructure
+﻿using Life.Infrastructure.Common;
+
+namespace Life.Infrastructure
 {
 	public interface IUserAction
 	{
