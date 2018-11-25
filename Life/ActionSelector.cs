@@ -24,6 +24,16 @@ namespace Life
 
 		public IUserAction GetNextAction()
 		{
+			return _lastAction = SelectNextAction();
+		}
+
+		private IUserAction SelectNextAction()
+		{
+			if (_lastAction == null)
+				return GetAction<MapSelectAction>();
+			if (_lastAction is MapSelectAction)
+				return GetAction<GameStartAction>();
+
 			if (_userInterface.IsInputAvailable)
 			{
 				var action = AskActionFromUserOnce();
@@ -66,5 +76,7 @@ namespace Life
 		private readonly IReadOnlyDictionary<string, IUserAction> _actions;
 		private readonly Func<GameContext> _gameSettingsProvider;
 		private readonly IUserInterface _userInterface;
+		
+		private IUserAction _lastAction;
 	}
 }
