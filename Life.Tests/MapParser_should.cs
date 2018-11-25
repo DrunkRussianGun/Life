@@ -23,7 +23,7 @@ namespace Life.Tests
 				"##"
 			});
 			
-			map.IsEqualTo(new Map(
+			map.IsEqualTo(new GameMap(
 				new Point(0, 0),
 				new Point(0, 1),
 				new Point(1, 1)
@@ -44,7 +44,7 @@ namespace Life.Tests
 				" # "
 			});
 
-			map.IsEqualTo(new Map(new[]
+			map.IsEqualTo(new GameMap(new[]
 				{
 					new Point(1, 0),
 					new Point(1, 1),
@@ -73,7 +73,7 @@ namespace Life.Tests
 
 	internal static class MapExtensions
 	{
-		public static void IsEqualTo(this Map map, Map other)
+		public static void IsEqualTo(this GameMap map, GameMap other)
 		{
 			map.AliveCells.Should().BeEquivalentTo(other.AliveCells);
 			map.Bounds.Should().Be(other.Bounds);

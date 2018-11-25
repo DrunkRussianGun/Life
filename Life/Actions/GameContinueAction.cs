@@ -6,49 +6,48 @@ using System.Threading;
 
 namespace Life.Actions
 {
-	public class GameRunner
+	public class GameContinueAction : IUserAction
 	{
-		public GameRunner(
+		public GameContinueAction(
 			AppSettings appSettings,
-			IUserInterface userInterface,
-			Action commandHandler)
+			GameSettings gameSettings,
+			IUserInterface userInterface)
 		{
 			_appSettings = appSettings ?? throw new ArgumentNullException(nameof(appSettings));
+			_gameSettings = gameSettings ?? throw new ArgumentNullException(nameof(gameSettings));
 			_userInterface = userInterface ?? throw new ArgumentNullException(nameof(userInterface));
-			_commandHandler = commandHandler ?? throw new ArgumentNullException(nameof(commandHandler));
 		}
 
-		public void Run(GameContext context)
-		{
-			if (context == null)
-				throw new ArgumentNullException(nameof(context));
-			
-			OutputMap(context);
-			while (context.InProgress)
-			{
-				context.Game.Update();
-				
-				OutputMap(context);
+		public string Name => "Continue";
+		public string Command => "continue";
 
-				if (_userInterface.IsInputAvailable)
-					_commandHandler();
+		public void Perform(CommandContext context)
+		{
+			if (!_gameSettings.CurrentGame?.InProgress ?? true)
+			{
+				context.AddError("Cannot continue the finished game");
+				return;
 			}
+
+			var game = _gameSettings.CurrentGame.Game;
+			game.Update();
+			OutputMap(game.Map);
 		}
 
 		private readonly AppSettings _appSettings;
+		private readonly GameSettings _gameSettings;
 		private readonly IUserInterface _userInterface;
-		private readonly Action _commandHandler;
 
-		private void OutputMap(GameContext context)
+		private void OutputMap(GameMap map)
 		{
-			var map = context.Game.Map.AliveCells;
-			var bounds = GetBounds(map);
+			var cells = map.AliveCells;
+			var bounds = GetBounds(cells);
 
 			_userInterface.ClearScreen();
 			for (var y = bounds.Top; y < bounds.Bottom; ++y)
 			{
 				for (var x = bounds.Left; x < bounds.Right; ++x)
-					_userInterface.Output.Write(map.Contains(new Point(x, y)) ? '#' : ' ');
+					_userInterface.Output.Write(cells.Contains(new Point(x, y)) ? '#' : ' ');
 				_userInterface.Output.WriteLine();
 			}
 

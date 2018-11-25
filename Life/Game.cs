@@ -8,9 +8,9 @@ namespace Life
 {
 	public class Game
 	{
-		public Map Map { get; private set; }
+		public GameMap Map { get; private set; }
 		
-		public Game(Map map)
+		public Game(GameMap map)
 		{
 			Map = map ?? throw new ArgumentNullException(nameof(map));
 		}
@@ -32,7 +32,7 @@ namespace Life
 					newCells.Add(cell);
 			}
 
-			Map = new Map(newCells, Map.Bounds);
+			Map = new GameMap(newCells, Map.Bounds);
 		}
 
 		private IEnumerable<Point> GetAliveNeighbours(Point cell)

@@ -18,12 +18,9 @@ namespace Life.Actions
 		public string Name => "Select map";
 		public string Command => "select map";
 
-        public void Perform(CommandContext context)
-        {
-            if (context == null)
-                throw new ArgumentNullException(nameof(context));
-
-            var map = _mapSelector.Select();
+		public void Perform(CommandContext context)
+		{
+			var map = _mapSelector.Select();
 			_gameSettings.StartMap = _mapParser.Parse(map);
 		}
 

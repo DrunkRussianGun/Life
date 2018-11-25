@@ -2,6 +2,6 @@
 {
 	public interface IMapParser
 	{
-		Map Parse(string[] lines);
+		GameMap Parse(string[] lines);
 	}
 }

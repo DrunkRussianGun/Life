@@ -31,7 +31,7 @@ namespace Life.Tests
 
 		[TestCaseSource("ConstantShapes")]
 		[Test]
-		public void TestConstantShapes(Map shape)
+		public void TestConstantShapes(GameMap shape)
 		{
 			var game = new Game(shape);
 
@@ -62,39 +62,39 @@ namespace Life.Tests
 			game.Map.Bounds.Should().Be(Square.Bounds);
 		}
 
-		private static readonly Map OneCell = ParseMap(new[] { "#" });
-		private static readonly Map Row = ParseMap(new[] { "# # # # # # # # # #" });
-		private static readonly Map Square = ParseMap(new[]
+		private static readonly GameMap OneCell = ParseMap(new[] { "#" });
+		private static readonly GameMap Row = ParseMap(new[] { "# # # # # # # # # #" });
+		private static readonly GameMap Square = ParseMap(new[]
 		{
 			"##",
 			"##"
 		});
-		private static readonly Map Beehive = ParseMap(new[]
+		private static readonly GameMap Beehive = ParseMap(new[]
 		{
 			" ## ",
 			"#  #",
 			" ## "
 		});
-		private static readonly Map Loaf = ParseMap(new[]
+		private static readonly GameMap Loaf = ParseMap(new[]
 		{
 			" ## ",
 			"#  #",
 			" # #",
 			"  # "
 		});
-		private static readonly Map Boat = ParseMap(new[]
+		private static readonly GameMap Boat = ParseMap(new[]
 		{
 			"## ",
 			"# #",
 			" # "
 		});
-		private static readonly Map VertBlinker = ParseMap(new[]
+		private static readonly GameMap VertBlinker = ParseMap(new[]
 		{
 			" # ",
 			" # ",
 			" # "
 		});
-		private static readonly Map HorBlinker = ParseMap(new[]
+		private static readonly GameMap HorBlinker = ParseMap(new[]
 		{
 			"   ",
 			"###",
@@ -104,20 +104,20 @@ namespace Life.Tests
 		private static readonly IEnumerable<TestCaseData> ConstantShapes
 			= new[] { Square, Beehive, Loaf, Boat }.ToTestCaseSource();
 
-		private static Map ParseMap(string[] lines)
+		private static GameMap ParseMap(string[] lines)
 		{
 			var cells = lines.SelectMany((line, y) =>
 					line.Select((ch, x) =>
 						ch == ' ' ? null : new Point?(new Point(x, y))))
 				.Where(point => point != null)
 				.Select(point => point.Value);
-			return new Map(cells);
+			return new GameMap(cells);
 		}
 	}
 
 	internal static class GameExtensions
 	{
-		public static void MapIsEqualTo(this Game game, Map map)
+		public static void MapIsEqualTo(this Game game, GameMap map)
 		{
 			game.Map.AliveCells.Should().BeEquivalentTo(map.AliveCells);
 		}

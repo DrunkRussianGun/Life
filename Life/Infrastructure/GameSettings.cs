@@ -1,9 +1,12 @@
-﻿using System;
-
-namespace Life.Infrastructure
+﻿namespace Life.Infrastructure
 {
 	public class GameSettings
 	{
-		public Map StartMap { get; set; }
+		public GameMap StartMap { get; set; }
+
+		public GameContext CurrentGame { get; set; } = new GameContext
+		{
+			InProgress = false
+		};
 	}
 }

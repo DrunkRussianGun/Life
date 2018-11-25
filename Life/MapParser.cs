@@ -8,7 +8,7 @@ namespace Life
 {
 	public class MapParser : IMapParser
 	{
-		public Map Parse(string[] lines)
+		public GameMap Parse(string[] lines)
 		{
 			IEnumerable<string> mapLines = lines;
 
@@ -17,7 +17,7 @@ namespace Life
 				mapLines = lines.Skip(2);
 			var map = ParseMap(mapLines);
 
-			return new Map(map, bounds);
+			return new GameMap(map, bounds);
 		}
 
 		private IEnumerable<Point> ParseMap(IEnumerable<string> lines)

@@ -1,37 +1,52 @@
-﻿using Life.Actions;
-using Life.Infrastructure;
+﻿using Life.Infrastructure;
+using Ninject;
+using Ninject.Extensions.Conventions;
 using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Threading;
 
 namespace Life
 {
 	internal class Program
 	{
+		private static readonly StandardKernel Container;
+
+		static Program()
+		{
+			Container = new StandardKernel();
+
+			Container.Bind<IFileProvider>().To<DefaultFileProvider>().InSingletonScope();
+			Container.Bind<IUserInterface>().To<ConsoleUserInterface>().InSingletonScope();
+
+			Container.Bind<AppSettings>().ToMethod(
+				context => AppSettings.Default).InSingletonScope();
+			Container.Bind<GameSettings>().ToSelf().InSingletonScope();
+			Container.Bind<GameContext>().ToMethod(
+				context => context.Kernel.Get<GameSettings>().CurrentGame);
+			Container.Bind<ActionPerformer>().ToSelf().InSingletonScope();
+			Container.Bind<IMapParser>().To<MapParser>().InSingletonScope();
+
+			Container.Bind(kernel => kernel
+				.FromThisAssembly()
+				.SelectAllClasses()
+				.InheritedFrom<IUserAction>()
+				.BindAllInterfaces());
+		}
+
 		private static void Main(string[] args)
 		{
 			Console.Title = "Life";
 
-			var commandHandler = new CommandHandler(new[] {
-				new MapSelectAction(
-					new MapSelector(new[] { ".", "\\maps" }, new DefaultFileProvider(), new ConsoleUserInterface()),
-					new MapParser(),
-					new GameSettings()
-				) }
-			);
-			var ui = new ConsoleUserInterface();
+			var actionSelector = Container.Get<ActionSelector>();
+			var actionPerformer = Container.Get<ActionPerformer>();
 			while (true)
 			{
-				var command = ui.GetCommand();
-				var context = commandHandler.Handle(command);
+				var action = actionSelector.GetNextAction();
+				var commandContext = actionPerformer.Perform(action);
 
-				if (context.ExitRequested)
+				if (commandContext.ExitRequested)
 					return;
-				if (!context.Handled)
-					Console.WriteLine(context.ErrorMessage);
+				if (!commandContext.Handled)
+					Console.WriteLine(
+						string.Join("\r\n", commandContext.ErrorMessages));
 			}
 		}
 	}

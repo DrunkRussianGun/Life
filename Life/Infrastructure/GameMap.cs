@@ -3,14 +3,14 @@ using System.Drawing;
 
 namespace Life.Infrastructure
 {
-	public class Map
+	public class GameMap
 	{
 		public HashSet<Point> AliveCells { get; }
 		public Rectangle? Bounds { get; }
 
-		public Map(params Point[] cells) : this(cells, null) { }
+		public GameMap(params Point[] cells) : this(cells, null) { }
 
-		public Map(IEnumerable<Point> aliveCells, Rectangle? bounds = null)
+		public GameMap(IEnumerable<Point> aliveCells, Rectangle? bounds = null)
 		{
 			AliveCells = new HashSet<Point>(aliveCells);
 			Bounds = bounds;

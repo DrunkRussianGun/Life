@@ -35,7 +35,20 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Castle.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <HintPath>..\packages\Castle.Core.4.3.1\lib\net45\Castle.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject, Version=3.3.4.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.3.3.4\lib\net45\Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.Extensions.Conventions, Version=3.3.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.Extensions.Conventions.3.3.0\lib\net45\Ninject.Extensions.Conventions.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.Extensions.Factory, Version=3.3.2.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.Extensions.Factory.3.3.2\lib\net45\Ninject.Extensions.Factory.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq" />
@@ -46,15 +59,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ActionSelector.cs" />
+    <Compile Include="Actions\GameContinueAction.cs" />
     <Compile Include="Actions\MapSelector.cs" />
     <Compile Include="Actions\GameEndAction.cs" />
-    <Compile Include="Actions\GameRunner.cs" />
     <Compile Include="Actions\GameStartAction.cs" />
     <Compile Include="Actions\MapSelectAction.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="Infrastructure\AppSettings.cs" />
     <Compile Include="Infrastructure\CommandContext.cs" />
-    <Compile Include="Infrastructure\CommandHandler.cs" />
+    <Compile Include="Infrastructure\ActionPerformer.cs" />
     <Compile Include="Infrastructure\ConsoleUserInterface.cs" />
     <Compile Include="Infrastructure\DefaultFileProvider.cs" />
     <Compile Include="Infrastructure\GameContext.cs" />
@@ -63,13 +77,14 @@
     <Compile Include="Infrastructure\IFileProvider.cs" />
     <Compile Include="Infrastructure\IUserInterface.cs" />
     <Compile Include="Infrastructure\IUserAction.cs" />
-    <Compile Include="Infrastructure\Map.cs" />
+    <Compile Include="Infrastructure\GameMap.cs" />
     <Compile Include="MapParser.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Maps\glider10x10.txt">
